@@ -1,2 +1,3 @@
-# schemats
-A postgres -> typescript interface generator
+# Schemats
+
+TODO

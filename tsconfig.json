@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es5",
+        "lib": ["es2018"],
+        "strict": true,
+        "noImplicitAny": true,
+        "declaration": true,
+        "strictNullChecks": true,
+        "sourceMap": true,
+        "outDir": ".build",
+        "esModuleInterop": true,
+        "resolveJsonModule": true
+    },
+    "exclude": ["node_modules"]
+}
