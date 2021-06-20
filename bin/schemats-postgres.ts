@@ -14,11 +14,11 @@ export const postgres = async (program: Command): Promise<void> => {
         .command('postgres')
         .arguments('[connection]')
         .option('-s, --schema <schema>', 'the schema to use', 'public')
-        .option('-t, --table <tables...>', 'the tables')
+        .option('-t, --table <tables...>', 'the tables within the schema')
         .option('-c, --camelCase', 'use camel case for enums and table names')
         .option('-e, --enums', 'use enums instead of types')
-        .option('-o, --output <output>', 'where to save generated file')
-        .option('--no-header', 'don\'t save a header')
+        .option('-o, --output <output>', 'where to save the generated file relative to the current working directory')
+        .option('--no-header', 'don\'t generate a header')
         .description('Generate a typescript schema from postgres', {
             connection: 'The connection string to use, if left empty will use env variables'
         })
@@ -31,6 +31,8 @@ export const postgres = async (program: Command): Promise<void> => {
                 const outputPath = relative(process.cwd(), rest.output)
                 await promises.writeFile(outputPath, schema, 'utf8')
                 console.log(`Written schema to ${outputPath}`)
+            } else {
+                console.log(schema)
             }
             await database.close()
         })

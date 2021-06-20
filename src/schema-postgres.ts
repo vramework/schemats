@@ -42,6 +42,9 @@ export const mapPostgresTableDefinitionToType = (config: Config, tableDefinition
             case 'timestamptz':
                 column.tsType = 'Date'
                 break
+            case 'point':
+                column.tsType = '{ x: number, y: number }'
+                break
             default:
                 if (customTypes.has(column.udtName)) {
                     column.tsType = config.transformTypeName(column.udtName)
@@ -65,18 +68,23 @@ export class PostgresDatabase implements Database {
     private db: Client
     public version: string = ''
 
-    constructor (private config: Config, public readonly connectionString: string) {
-        this.db = new Client(connectionString || 'postgres://postgres:password@localhost/enjamon')
+    constructor (private config: Config, private connectionString?: string) {
+        this.db = new Client(connectionString)
     }
 
     public async isReady () {
         await this.db.connect()
+        this.connectionString = `postgres://username:password@${this.db.host}:${this.db.port}/${this.db.database}`
         const result = await this.db.query<{ version: string }>(`SELECT version()`)
         this.version = result.rows[0].version
     }
 
     public async close () {
         await this.db.end()
+    }
+
+    public getConnectionString (): string {
+        return this.connectionString!
     }
 
     public getDefaultSchema (): string {

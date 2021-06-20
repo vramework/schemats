@@ -10,7 +10,7 @@ export type TableDefinition = Record<string, ColumnDefinition>
 
 export interface Database {
     version: string
-    connectionString: string
+    getConnectionString: () => string
     isReady (): Promise<void>
     close (): Promise<void>
     getDefaultSchema (): string

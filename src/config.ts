@@ -16,13 +16,13 @@ export class Config {
             writeHeader: true,
             camelCase: false,
             throwOnMissingType: true,
-            enums: true,
+            enums: false,
             ...config
         }
     }
 
-    public getCLICommand (): string {
-        const commands = ['schemats', 'generate']
+    public getCLICommand (dbConnection: string): string {
+        const commands = ['schemats', 'generate', dbConnection]
         if (this.config.camelCase) {
             commands.push('-C')
         }
