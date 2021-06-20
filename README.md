@@ -1,12 +1,12 @@
 # Schemats
 
-Before anything, I would like to give a massive thank you to [sweetiq](https://www.npmjs.com/package/schemats) and their contributors for giving me a start.
+Before anything, I would like to give a massive thank you to [sweetiq](https://www.npmjs.com/package/schemats) and their contributors for giving me a huge head start.
 
 The reason I have created a new repo instead of a fork is because I don't support mysql and have some breaking changes due to how this library is consumed by vramework libraries (coming soon). I have kept the name and based of their MIT license as means of attribution and thanks.
 
 ## Why Schemats
 
-Being able to weave your database structure through backend APIs, automatically generated JSON schemas and all the way to a button in the frontend gives allows you to ensure that any change in the can be caught everywhere. This allows us to some pretty amazing things when it comes to refactoring and maintaining codebases, but that is more for a blog post about Vramework and it's insipiration than a readme.
+Being able to weave your database structure through backend APIs, automatically generated JSON schemas and all the way to a button in the frontend allows you to ensure that any breaking change can be caught everywhere. This allows us to some pretty amazing things when it comes to refactoring and maintaining codebases, but that is more for a blog post about Vramework than this readme.
 
 ## Quickstart
 
@@ -49,7 +49,7 @@ My personal favourite is the following:
 
 
 ```bash
-schemats postgres postgres://postgres@localhost/database -t pet_store -c -e -o db-types.ts
+schemats postgres postgres://postgres@localhost/database -s pet_store -c -e -o db-types.ts
 ```
 
 While will result in the following typescript file: 
@@ -119,7 +119,7 @@ type updatePetLocation = Pick<DB.Pet, 'lastSeenAt'>
 So where are the tests? The original schemats library has an amazing 100% coverage and this one has 0.
 
 To be honest, I'm using this library in a few of my current projects and any error in it throws dozens 
-in the entire codebase, so it sort of tests itself. That being saif I will be looking to add some in again,
+in the entire codebase, so it sort of tests itself. That being said I will be looking to add some in again,
 but in terms of priorties not my highest.
 
 Thanks!
