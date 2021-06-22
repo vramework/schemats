@@ -2,7 +2,7 @@
 
 Before anything, I would like to give a massive thank you to [sweetiq](https://www.npmjs.com/package/schemats) and their contributors for giving me a huge head start.
 
-The reason I have created a new repo instead of a fork is because I don't support mysql and have some breaking changes due to how this library is consumed by vramework libraries (coming soon). I have kept the name and based of their MIT license as means of attribution and thanks.
+The reason I have created a new repo instead of a fork is because I don't support mysql and have some breaking changes due to how this library is consumed by vramework libraries (coming soon). I have kept the name and based off their MIT license as means of attribution and thanks.
 
 ## Why Schemats
 
