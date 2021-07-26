@@ -1,3 +1,7 @@
+## [0.0.4] - 2021.07.26
+
+Fix: publish dist and src packages
+
 ## [0.0.3] - 2021.07.26
 
 Fix: nullable fields are also optional

@@ -1,6 +1,6 @@
 {
   "name": "@vramework/schemats",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Generate typescript interface definitions from postgres SQL database schema",
   "keywords": [
     "postgres",
@@ -11,10 +11,10 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "tsc && cp README.md .build/"
+    "build": "tsc"
   },
   "bin": {
-    "schemats": "bin/schemats.js"
+    "schemats": "dist/bin/schemats.js"
   },
   "repository": {
     "type": "git",
