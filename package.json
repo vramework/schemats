@@ -1,6 +1,6 @@
 {
   "name": "@vramework/schemats",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Generate typescript interface definitions from postgres SQL database schema",
   "keywords": [
     "postgres",
@@ -8,8 +8,8 @@
     "typescript",
     "sql"
   ],
-  "main": "./src/index.js",
-  "types": "./src/index.d.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc && cp README.md .build/"
   },
@@ -32,15 +32,15 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^15.12.4",
-    "@types/pg": "^8.6.0",
+    "@types/node": "^16.4.3",
+    "@types/pg": "^8.6.1",
     "@types/sinon": "^10.0.2",
-    "ts-node": "^10.0.0",
-    "typescript": "^4.3.4"
+    "ts-node": "^10.1.0",
+    "typescript": "^4.3.5"
   },
   "dependencies": {
     "camelcase": "^6.2.0",
-    "commander": "^7.2.0",
+    "commander": "^8.0.0",
     "pg": "^8.6.0"
   }
 }
