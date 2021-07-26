@@ -37,7 +37,7 @@ export function generateTableInterface (config: Config, tableNameRaw: string, ta
     const entries = Object.entries(tableDefinition)
     for (const [name, { tsType, nullable, isArray }] of entries) {
         const columnName = config.transformColumnName(name)
-        members += `\n\t${normalizeName(columnName)}: ${tsType}${isArray ? '[]' : ''}${nullable ? ' | null' : ''}`
+        members += `\n\t${normalizeName(columnName)}${nullable ? '?' : ''}: ${tsType}${isArray ? '[]' : ''}${nullable ? ' | null' : ''}`
     }
     return `export interface ${normalizeName(tableName)} { ${members} \n}`
 }
