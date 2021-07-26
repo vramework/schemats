@@ -1,3 +1,7 @@
+## [0.0.5] - 2021.07.26
+
+Fix: isArray overrides real value with false
+
 ## [0.0.4] - 2021.07.26
 
 Fix: publish dist and src packages

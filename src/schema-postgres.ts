@@ -4,7 +4,6 @@ import { TableDefinition, Database, EnumTypes } from './schema-interfaces'
 
 export const mapPostgresTableDefinitionToType = (config: Config, tableDefinition: TableDefinition, customTypes: Set<string>): TableDefinition => {
     return Object.entries(tableDefinition).reduce((result, [table, column]) => {
-        column.isArray = column.udtName.startsWith('_')
         switch (column.udtName) {
             case 'bpchar':
             case 'char':
