@@ -15,6 +15,7 @@ export const postgres = async (program: Command): Promise<void> => {
         .arguments('[connection]')
         .option('-s, --schema <schema>', 'the schema to use', 'public')
         .option('-t, --tables <tables...>', 'the tables within the schema')
+        .option('-f, --typesFile <typesFile>', 'the file where jsonb types can be imported from')
         .option('-c, --camelCase', 'use camel case for enums and table names')
         .option('-e, --enums', 'use enums instead of types')
         .option('-o, --output <output>', 'where to save the generated file relative to the current working directory')

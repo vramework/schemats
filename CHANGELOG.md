@@ -1,3 +1,7 @@
+## [0.0.6] - 2021.08.05
+
+Feat: using the -f flag to reference a file with non DB types and adding comments to columns in postgres using `COMMENT ON COLUMN schema.table.column is '@type {TYPE}';` now allows us to type jsonb columns directly
+
 ## [0.0.5] - 2021.07.26
 
 Fix: isArray overrides real value with false

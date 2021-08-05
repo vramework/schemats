@@ -1,11 +1,11 @@
 import camelCase from 'camelcase'
-import { ColumnDefinition } from './schema-interfaces'
 
 export interface ConfigValues {
     schema: string
     tables: string[]
     camelCase?: boolean
     writeHeader?: boolean
+    typesFile?: boolean
     throwOnMissingType?: boolean
     enums?: boolean
 }
@@ -51,6 +51,10 @@ export class Config {
         return this.config.writeHeader
     }
 
+    public get typesFile () {
+        return this.config.typesFile
+    }
+
     public get throwOnMissingType () {
         return this.config.throwOnMissingType
     }
@@ -61,9 +65,5 @@ export class Config {
 
     public transformColumnName (columnName: string) {
         return this.config.camelCase ? camelCase(columnName) : columnName
-    }
-
-    public getTypeOfObjectForColumn (table: string, column: ColumnDefinition) {
-        return 'never'
     }
 }

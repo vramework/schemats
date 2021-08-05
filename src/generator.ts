@@ -18,7 +18,7 @@ const generateHeader = (config: Config, db: Database): string => {
 const reservedJSNames = new Set(['string', 'number', 'package'])
 const normalizeName = (name: string): string => reservedJSNames.has('name') ? `${name}_` : name
 
-export function generateEnum (config: Config, enumObject: EnumTypes): string[] {
+export function generateEnum(config: Config, enumObject: EnumTypes): string[] {
     const enumStrings = []
     for (let enumNameRaw in enumObject) {
         const enumName = config.transformTypeName(enumNameRaw)
@@ -31,7 +31,7 @@ export function generateEnum (config: Config, enumObject: EnumTypes): string[] {
     return enumStrings
 }
 
-export function generateTableInterface (config: Config, tableNameRaw: string, tableDefinition: TableDefinition) {
+export function generateTableInterface(config: Config, tableNameRaw: string, tableDefinition: TableDefinition) {
     const tableName = config.transformTypeName(tableNameRaw)
     let members = ''
     const entries = Object.entries(tableDefinition)
@@ -42,8 +42,8 @@ export function generateTableInterface (config: Config, tableNameRaw: string, ta
     return `export interface ${normalizeName(tableName)} { ${members} \n}`
 }
 
-export const typescriptOfTable = async (config: Config, db: Database, schema: string, table: string) => {
-    const tableTypes = await db.getTableTypes(schema, table)
+export const typescriptOfTable = async (config: Config, db: Database, schema: string, table: string, types: Set<string>) => {
+    const tableTypes = await db.getTableTypes(schema, table, types)
     return generateTableInterface(config, table, tableTypes)
 }
 
@@ -52,15 +52,19 @@ export const typescriptOfSchema = async (config: Config, db: Database): Promise<
     const tables = config.tables || await db.getSchemaTables(schema)
     const enums = await db.getEnums(schema)
     const enumTypes = generateEnum(config, enums)
-    const interfaces = await Promise.all(tables.map(table => typescriptOfTable(config, db, schema, table)))
+    const jsonTypesToImport = new Set<string>()
+    const interfaces = await Promise.all(tables.map(table => typescriptOfTable(config, db, schema, table, jsonTypesToImport)))
     const output = [enumTypes.join('\n\n'), interfaces.join('\n\n')]
+    if (config.typesFile && jsonTypesToImport.size) {
+        output.unshift(`import { ${Array.from(jsonTypesToImport).join(', ')} } from '${config.typesFile}'\n\n`)
+    }
     if (config.writeHeader) {
         output.unshift(generateHeader(config, db))
     }
     return output.join('\n\n')
 }
 
-export { 
-    Config, 
-    ConfigValues 
+export {
+    Config,
+    ConfigValues
 }
