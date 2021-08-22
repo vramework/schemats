@@ -1,3 +1,7 @@
+## [0.0.8] - 2021.08.22
+
+Feat: Exporting tables and Custom types for typed-postgres
+
 ## [0.0.7] - 2021.08.05
 
 Fix: array regression due to bad merge
