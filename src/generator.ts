@@ -47,6 +47,13 @@ export const typescriptOfTable = async (config: Config, db: Database, schema: st
     return generateTableInterface(config, table, tableTypes)
 }
 
+export const typescriptLookupForTables = (config: Config, tables: string[]): string => {
+    const types = tables.map(t => `${t}: ${config.transformTypeName(t)}`)
+    return `export interface Tables {
+    ${types.join(',\n\t')}
+}`
+}
+
 export const typescriptOfSchema = async (config: Config, db: Database): Promise<string> => {
     const schema = config.schema || await db.getDefaultSchema()
     const tables = config.tables || await db.getSchemaTables(schema)
@@ -61,6 +68,8 @@ export const typescriptOfSchema = async (config: Config, db: Database): Promise<
     if (config.writeHeader) {
         output.unshift(generateHeader(config, db))
     }
+    output.push(typescriptLookupForTables(config, tables))
+    output.push(`export type CustomTypes = ${Array.from(jsonTypesToImport).join(' | ')}`)
     return output.join('\n\n')
 }
 
