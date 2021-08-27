@@ -1,3 +1,8 @@
+## [0.0.9] - 2021.08.27
+
+doc: adding example documentation
+fix: Don't export custom types if empty
+
 ## [0.0.8] - 2021.08.22
 
 Feat: Exporting tables and Custom types for typed-postgres
