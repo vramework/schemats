@@ -169,5 +169,16 @@ To be honest, I'm using this library in a few of my current projects and any err
 in the entire codebase, so it sort of tests itself. That being said I will be looking to add some in again,
 but in terms of priorties not my highest.
 
-Thanks!
+However for manual testing and experimenting you can easily replicate this project by:
+
+```bash
+# Clone the repo
+git clone git@github.com:vramework/schemats.git
+# Enter repo
+cd schemats
+# Install dependencies
+yarn install
+# Run the example, which will run create the schemats library and generate the db-types library
+yarn run example
+```
 
