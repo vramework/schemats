@@ -2,11 +2,22 @@
 
 Before anything, I would like to give a massive thank you to [sweetiq](https://www.npmjs.com/package/schemats) and their contributors for giving me a huge head start.
 
-The reason I have created a new repo instead of a fork is because I don't support mysql and have some breaking changes due to how this library is consumed by vramework libraries (coming soon). I have kept the name and based off their MIT license as means of attribution and thanks.
+The reason I have created a new repo instead of a fork is because I don't support mysql and have some breaking changes due to how this library is consumed by [typescript-postgres]() and [vramework]().
+
+I have kept the name and based off their MIT license as means of attribution and thanks.
 
 ## Why Schemats
 
-Being able to weave your database structure through backend APIs, automatically generated JSON schemas and all the way to a button in the frontend allows you to ensure that any breaking change can be caught everywhere. This allows us to some pretty amazing things when it comes to refactoring and maintaining codebases, but that is more for a blog post about Vramework than this readme.
+Because being able to make a change to your database structure and have it:
+
+- validate through your node backend APIs
+- get verified against automatically generate JSON schemas
+- raise errors in your frontend application 
+
+Is just a great developer experience in my opinion.
+
+This allows us to some pretty amazing things when it comes to refactoring and maintaining codebases, and
+also provide the meta-data to help with libraries like [typescript-postgres](). 
 
 ## Quickstart
 
@@ -39,17 +50,18 @@ CREATE TABLE "pet_store"."pet" (
   "type" pet_store.animal NOT NULL,
   "name" text NOT NULL,
   "birthdate" date,
-  "last_seen_location" point
+  "last_seen_location" point,
+  "random_facts" jsonb
 );
+COMMENT ON COLUMN pet_store.pet.random_facts is '@type {RandomPetFacts}';
 ```
 
 You can now generate a bunch of different schema definitions.
 
 My personal favourite is the following:
 
-
 ```bash
-schemats postgres postgres://postgres@localhost/database -s pet_store -c -e -o db-types.ts
+schemats postgres postgres://postgres@localhost/database -f ./db-custom-types.ts -s pet_store -c -e -o db-types.ts
 ```
 
 While will result in the following typescript file: 
@@ -62,6 +74,8 @@ While will result in the following typescript file:
  * $ schemats generate -C -s pet_store
  *
  */
+
+import { RandomPetFacts } fro './db-custom-types.ts' 
 
 export enum Animal {
         Cat = 'cat',
@@ -79,7 +93,8 @@ export interface Pet {
         type: Animal
         name: string
         birthdate: Date | null
-        lastSeenAt: { x: number, y: number } | null 
+        lastSeenAt: { x: number, y: number } | null,
+        randomFaces: RandomPetFacts
 }
 ```
 
@@ -91,16 +106,48 @@ Usage: schemats postgres [options] [connection]
 Generate a typescript schema from postgres
 
 Arguments:
-  connection               The connection string to use, if left empty will use env variables
+  connection                   The connection string to use, if left empty will use env variables
 
 Options:
-  -s, --schema <schema>    the schema to use (default: "public")
-  -t, --table <tables...>  the tables within the schema (default: "all")
-  -c, --camelCase          use camel case for enums and table names
-  -e, --enums              use enums instead of types
-  -o, --output <output>    where to save the generated file
-  --no-header              dont save a header
-  -h, --help               display help for command
+  -s, --schema <schema>        the schema to use (default: "public")
+  -t, --tables <tables...>     the tables within the schema
+  -f, --typesFile <typesFile>  the file where jsonb types can be imported from
+  -c, --camelCase              use camel case for enums and table names
+  -e, --enums                  use enums instead of types
+  -o, --output <output>        where to save the generated file relative to the current working directory
+  --no-header                  don't generate a header
+  -h, --help                   display help for command
+```
+
+## Features
+
+### Camel Case
+
+This automatically turns all your tables and Enums / Types to camelcase, which is the default
+experience for javascript and is more consistent to use
+
+### Enums
+
+Using enums turns all postgres enums into Enums instead of normal types, which is just a
+preference aspect for developers since renaming enum values or order will change the Enum
+key and value.
+
+### Types File
+
+This is a VERY useful feature for jsonb fields. Normally a jsonb field type is unknown, 
+however if you provide a types json file this will get the type out of the comment 
+of a field and assign it to the value.
+
+The structure of a custom type file could either be from another file:
+
+```typescript
+export type { RandomPetFacts }  from './somewhere-else'
+```
+
+or it could just be defined straight in the file.
+
+```typescript
+export type RandomPetFacts = Record<string, string>
 ```
 
 ## Using in typescript

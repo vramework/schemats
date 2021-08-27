@@ -11,7 +11,10 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "example:create-db": "ts-node example/create-db.ts",
+    "example:generate": "ts-node ./bin/schemats postgres postgres://postgres:password@localhost/schemats -s pet_store -o example/db-types.ts -f ./db-custom-types -c -e",
+    "example": "yarn run example:create-db && yarn run example:generate"
   },
   "bin": {
     "schemats": "dist/bin/schemats.js"

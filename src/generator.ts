@@ -62,14 +62,21 @@ export const typescriptOfSchema = async (config: Config, db: Database): Promise<
     const jsonTypesToImport = new Set<string>()
     const interfaces = await Promise.all(tables.map(table => typescriptOfTable(config, db, schema, table, jsonTypesToImport)))
     const output = [enumTypes.join('\n\n'), interfaces.join('\n\n')]
+
     if (config.typesFile && jsonTypesToImport.size) {
         output.unshift(`import { ${Array.from(jsonTypesToImport).join(', ')} } from '${config.typesFile}'\n\n`)
     }
+    
     if (config.writeHeader) {
         output.unshift(generateHeader(config, db))
     }
+    
     output.push(typescriptLookupForTables(config, tables))
-    output.push(`export type CustomTypes = ${Array.from(jsonTypesToImport).join(' | ')}`)
+
+    if (jsonTypesToImport.size) {
+        output.push(`export type CustomTypes = ${Array.from(jsonTypesToImport).join(' | ')}`)
+    }
+    
     return output.join('\n\n')
 }
 
