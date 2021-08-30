@@ -23,7 +23,7 @@ export function generateEnum(config: Config, enumObject: EnumTypes): string[] {
     for (let enumNameRaw in enumObject) {
         const enumName = config.transformTypeName(enumNameRaw)
         if (config.enums) {
-            enumStrings.push(`export enum ${enumName} {\n${enumObject[enumNameRaw].map((v: string) => `\t${camelcase(v, { pascalCase: true })} = '${v}'`).join(',\n')} \n}`)
+            enumStrings.push(`export enum ${enumName} {\n${enumObject[enumNameRaw].map((v: string) => `\t'${camelcase(v, { pascalCase: true })}' = '${v}'`).join(',\n')} \n}`)
         } else {
             enumStrings.push(`export type ${enumName} = ${enumObject[enumNameRaw].map((v: string) => `'${v}'`).join(' | ')}`)
         }
