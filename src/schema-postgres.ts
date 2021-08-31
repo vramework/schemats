@@ -16,6 +16,7 @@ export const mapPostgresTableDefinitionToType = (config: Config, tableDefinition
             case 'time':
             case 'timetz':
             case 'interval':
+            case 'tsvector':
             case 'name':
                 column.tsType = 'string'
                 break
