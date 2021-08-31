@@ -82,8 +82,8 @@ import { RandomPetFacts } from './db-custom-types'
 
 
 export enum Animal {
-	Cat = 'cat',
-	Dog = 'dog' 
+	'Cat' = 'cat',
+	'Dog' = 'dog' 
 }
 
 export interface User { 
