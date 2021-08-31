@@ -51,7 +51,8 @@ CREATE TABLE "pet_store"."pet" (
   "name" text NOT NULL,
   "birthdate" date,
   "last_seen_location" point,
-  "random_facts" jsonb
+  "random_facts" jsonb,
+  "pet_search_document" tsvector
 );
 COMMENT ON COLUMN pet_store.pet.random_facts is '@type {RandomPetFacts}';
 ```
@@ -99,6 +100,7 @@ export interface Pet {
 	lastSeenLocation?: { x: number, y: number } | null
 	randomFacts?: RandomPetFacts | null
 	moreRandomFacts?: unknown | null 
+	petSearchDocument?: string | null
 }
 
 export interface Tables {
@@ -123,7 +125,8 @@ Options:
   -s, --schema <schema>        the schema to use (default: "public")
   -t, --tables <tables...>     the tables within the schema
   -f, --typesFile <typesFile>  the file where jsonb types can be imported from
-  -c, --camelCase              use camel case for enums and table names
+  -c, --camelCase              use camel case for enums, table names, and column names
+  -C, --camelCaseTypes         use camel case only for TS names - not modifying the column names
   -e, --enums                  use enums instead of types
   -o, --output <output>        where to save the generated file relative to the current working directory
   --no-header                  don't generate a header
@@ -132,18 +135,21 @@ Options:
 
 ## Features
 
-### Camel Case
+### Camel Case `-c --camelCase, -C --camelCaseTypes`
 
-This automatically turns all your tables and Enums / Types to camelcase, which is the default
+This automatically turns all your tables and Enums / Types and column names to camelcase, which is the default
 experience for javascript and is more consistent to use
 
-### Enums
+You can use Camel Case Types to just camel case the TS entities - leaving the strings representing 
+the SQL columns alone.
+
+### Enums `-e --enums`
 
 Using enums turns all postgres enums into Enums instead of normal types, which is just a
 preference aspect for developers since renaming enum values or order will change the Enum
 key and value.
 
-### Types File
+### Types File `-f --typesFile <typesFile>`
 
 This is a VERY useful feature for jsonb fields. Normally a jsonb field type is unknown, 
 however if you provide a types json file this will get the type out of the comment 
@@ -161,7 +167,7 @@ or it could just be defined straight in the file.
 export type RandomPetFacts = Record<string, string>
 ```
 
-### Tables | Custom Types
+### Tables | Custom Types `-t --tables <tables...>`
 
 These types are automatically generated to power typed-postgres
 
