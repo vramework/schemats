@@ -4,6 +4,7 @@ export interface ConfigValues {
     schema: string
     tables: string[]
     camelCase?: boolean
+    camelCaseTypes?: boolean
     writeHeader?: boolean
     typesFile?: boolean
     throwOnMissingType?: boolean
@@ -60,7 +61,7 @@ export class Config {
     }
 
     public transformTypeName (typename: string) {
-        return this.config.camelCase ? camelCase(typename, { pascalCase: true }) : typename
+        return (this.config.camelCase || this.config.camelCaseTypes) ? camelCase(typename, { pascalCase: true }) : typename
     }
 
     public transformColumnName (columnName: string) {
