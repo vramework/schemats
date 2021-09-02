@@ -19,6 +19,7 @@ CREATE TABLE "pet_store"."pet" (
   "birthdate" date,
   "last_seen_location" point,
   "random_facts" jsonb,
-  "more_random_facts" jsonb
+  "more_random_facts" jsonb,
+  "cute_name" tsvector
 );
 COMMENT ON COLUMN pet_store.pet.random_facts is '@type {RandomPetFacts}';

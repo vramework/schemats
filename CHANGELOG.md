@@ -1,5 +1,7 @@
 ## [0.0.10] - 2021.09.02
 
+chore: updating all dependencies
+
 feat: add -C --camelCaseTypes option
     
     This option adds the ability to camel case just the type names - which
