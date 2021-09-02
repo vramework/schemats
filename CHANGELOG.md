@@ -1,3 +1,34 @@
+## [0.0.10] - 2021.09.02
+
+feat: add -C --camelCaseTypes option
+    
+    This option adds the ability to camel case just the type names - which
+    gives a good mix between using JS Standard Camel Case and still
+    following the actual definitions of database.
+    
+    The issue with using camel case for both the types and the keys
+    is that we would have to provide a layer within the programs using the
+    types to convert back to the original form if the attributes are
+    different in JS than in the schema.
+    
+    There are definately
+    issues with this, especially with a database schema with an inconsistent
+    naming convention - we would have to provide some sort of mapping file
+    to acheive correct conversion.
+    
+    The types on the other hand, only exist in JS and therefore can be named
+    whatever we want when generating the types.
+
+fix(schema): add 'tsvector' to string types
+    
+    Text Search Vectors are a complex type inside of postgres, but can
+    generally be expressed as strings within TS.
+
+fix(generator): quote string enum keys
+    
+    This helps prevent issues in the generated file due to special
+    characters like `:` present in the postgres enum keys.
+
 ## [0.0.9] - 2021.08.27
 
 doc: adding example documentation
