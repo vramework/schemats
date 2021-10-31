@@ -1,3 +1,9 @@
+## [0.0.11] - 2021.10.31
+
+feat: adding mysql compatability
+
+This allows you to do the same thing just with mysql using `/bin/schemats mysql $connection_string -s $schema_name `
+
 ## [0.0.10] - 2021.09.02
 
 chore: updating all dependencies
