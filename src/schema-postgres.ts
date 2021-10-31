@@ -2,7 +2,7 @@ import { Client } from 'pg'
 import { Config } from './generator'
 import { TableDefinition, Database, EnumTypes } from './schema-interfaces'
 
-export const mapPostgresTableDefinitionToType = (config: Config, tableDefinition: TableDefinition, enumTypes: Set<string>, customTypes: Set<string>, columnDescriptions: Record<string, string>): TableDefinition => {
+const mapPostgresTableDefinitionToType = (config: Config, tableDefinition: TableDefinition, enumTypes: Set<string>, customTypes: Set<string>, columnDescriptions: Record<string, string>): TableDefinition => {
     return Object.entries(tableDefinition).reduce((result, [columnName, column]) => {
         switch (column.udtName) {
             case 'bpchar':

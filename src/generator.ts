@@ -23,7 +23,7 @@ export function generateEnum(config: Config, enumObject: EnumTypes): string[] {
     for (let enumNameRaw in enumObject) {
         const enumName = config.transformTypeName(enumNameRaw)
         if (config.enums) {
-            enumStrings.push(`export enum ${enumName} {\n${enumObject[enumNameRaw].map((v: string) => `\t'${camelcase(v, { pascalCase: true })}' = '${v}'`).join(',\n')} \n}`)
+            enumStrings.push(`export enum ${enumName} {\n${enumObject[enumNameRaw].map((v: string) => `  '${camelcase(v, { pascalCase: true })}' = '${v}'`).join(',\n')} \n}`)
         } else {
             enumStrings.push(`export type ${enumName} = ${enumObject[enumNameRaw].map((v: string) => `'${v}'`).join(' | ')}`)
         }
@@ -37,7 +37,7 @@ export function generateTableInterface(config: Config, tableNameRaw: string, tab
     const entries = Object.entries(tableDefinition)
     for (const [name, { tsType, nullable, isArray }] of entries) {
         const columnName = config.transformColumnName(name)
-        members += `\n\t${normalizeName(columnName)}${nullable ? '?' : ''}: ${tsType}${isArray ? '[]' : ''}${nullable ? ' | null' : ''}`
+        members += `\n  ${normalizeName(columnName)}${nullable ? '?' : ''}: ${tsType}${isArray ? '[]' : ''}${nullable ? ' | null' : ''}`
     }
     return `export interface ${normalizeName(tableName)} { ${members} \n}`
 }
@@ -50,7 +50,7 @@ export const typescriptOfTable = async (config: Config, db: Database, schema: st
 export const typescriptLookupForTables = (config: Config, tables: string[]): string => {
     const types = tables.map(t => `${t}: ${config.transformTypeName(t)}`)
     return `export interface Tables {
-    ${types.join(',\n\t')}
+  ${types.join(',\n  ')}
 }`
 }
 
