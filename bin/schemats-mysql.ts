@@ -12,13 +12,11 @@ export type Command = commander.Command
 export const mysql = async (program: Command): Promise<void> => {
     program
         .command('mysql')
-        .description('Generate a typescript schema from postgres')
+        .description('Generate a typescript schema from mysql')
         .argument('[connection]', 'The connection string to use, if left empty will use env variables')
         .option('-s, --schema <schema>', 'the schema to use', 'public')
         .option('-t, --tables <tables...>', 'the tables within the schema')
-        .option('-f, --typesFile <typesFile>', 'the file where jsonb types can be imported from')
         .option('-c, --camelCase', 'use camel case for enums, table names, and column names')
-        .option('-C, --camelCaseTypes', 'use camel case only for TS names - not modifying the column names')
         .option('-e, --enums', 'use enums instead of types')
         .option('-o, --output <output>', 'where to save the generated file relative to the current working directory')
         .option('--no-header', 'don\'t generate a header')
