@@ -1,3 +1,7 @@
+## [0.0.12] - 2021.11.01
+
+fix: typo in CLI
+
 ## [0.0.11] - 2021.10.31
 
 feat: adding mysql compatability

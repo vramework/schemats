@@ -79,8 +79,6 @@ While will result in the following typescript file:
 
 import { RandomPetFacts } from './db-custom-types'
 
-
-
 export enum Animal {
 	'Cat' = 'cat',
 	'Dog' = 'dog' 
@@ -114,9 +112,27 @@ export type CustomTypes = RandomPetFacts
 But you have quite a bit of flexbility:
 
 ```bash
-Usage: schemats postgres [options] [connection]
+Usage: schemats mysql [options] [connection]
 
-Generate a typescript schema from postgres
+Generate a typescript schema from mysql
+
+Arguments:
+  connection                   The connection string to use, if left empty will use env variables
+
+Options:
+  -s, --schema <schema>        the schema to use (default: "public")
+  -t, --tables <tables...>     the tables within the schema
+  -f, --typesFile <typesFile>  the file where jsonb types can be imported from
+  -c, --camelCase              use camel case for enums, table names, and column names
+  -C, --camelCaseTypes         use camel case only for TS names - not modifying the column names
+  -e, --enums                  use enums instead of types
+  -o, --output <output>        where to save the generated file relative to the current working directory
+  --no-header                  don't generate a header
+  -h, --help                   display help for command
+```
+
+```bash
+Generate a typescript schema from mysql
 
 Arguments:
   connection                   The connection string to use, if left empty will use env variables
