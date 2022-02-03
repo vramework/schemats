@@ -1,3 +1,9 @@
+## [1.0.0] - 2022.02.03
+
+fix(postgres): (bchrobot) adding missing cli command throwOnMissingType
+
+fix(postgres): (bchrobot) typo in write-header option
+
 ## [0.0.12] - 2021.11.01
 
 fix: typo in CLI
