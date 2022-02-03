@@ -1,4 +1,5 @@
-## [1.0.0] - 2022.02.03
+
+## [1.0.1] - 2022.02.03
 
 fix(postgres): (bchrobot) adding missing cli command throwOnMissingType
 
