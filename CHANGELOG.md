@@ -1,3 +1,6 @@
+## [1.0.2] - 2022.02.19
+
+chore: Upgrading dependencies
 
 ## [1.0.1] - 2022.02.03
 

@@ -1,6 +1,6 @@
 {
   "name": "@vramework/schemats",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Generate typescript interface definitions from postgres SQL database schema",
   "keywords": [
     "postgres",
@@ -35,16 +35,16 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^16.11.6",
-    "@types/pg": "^8.6.1",
-    "@types/sinon": "^10.0.6",
-    "ts-node": "^10.4.0",
-    "typescript": "^4.4.4"
+    "@types/node": "^17.0.18",
+    "@types/pg": "^8.6.4",
+    "@types/sinon": "^10.0.11",
+    "ts-node": "^10.5.0",
+    "typescript": "^4.5.5"
   },
   "dependencies": {
-    "camelcase": "^6.2.0",
-    "commander": "^8.3.0",
-    "mysql2": "^2.3.2",
-    "pg": "^8.7.1"
+    "camelcase": "^6.3.0",
+    "commander": "^9.0.0",
+    "mysql2": "^2.3.3",
+    "pg": "^8.7.3"
   }
 }
