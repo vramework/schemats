@@ -129,7 +129,7 @@ export class MysqlDatabase implements Database {
 
     public async getTableDefinition (tableSchema: string, tableName: string): Promise<TableDefinition> {
         const tableColumns = await this.query<{ COLUMN_NAME: string, DATA_TYPE: string, IS_NULLABLE: string, COLUMN_DEFAULT: string }>(`
-            SELECT column_name, data_type, is_nullable, column_default
+            SELECT COLUMN_NAME, DATA_TYPE, IS_NULLABLE, COLUMN_DEFAULT
             FROM information_schema.columns
             WHERE table_name = ? and table_schema = ?`,
             [tableName, tableSchema]
