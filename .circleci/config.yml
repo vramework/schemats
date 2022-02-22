@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  develop:
+  build:
     docker:
       - image: node:lts
       - image: circleci/postgres:12-alpine
@@ -20,26 +20,46 @@ jobs:
           paths:
             - ./node_modules
       - run: yarn run tsc
-      - run: yarn run example
+      - run: yarn run example:postgres
       - persist_to_workspace:
           root: .
           paths:
-            - .
+            - dist
+            - example
 
-  deploy:
+  release:
     docker: 
       - image: node:lts
     working_directory: ~/schemats
     steps:
       - attach_workspace:
           at: ~/schemats
+      - run:
+          name: Authenticate with registry
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
+      - run:
+          name: Publish package
+          command: npm publish
 
 workflows:
   version: 2
   
-  main:
+  develop:
     jobs:
-      - develop:
+      - build:
           filters:
-            branches:
-              ignore: master
+               tags:
+                  ignore: /^v.*/
+
+  release:
+      jobs:
+        - build:
+            filters:
+                tags:
+                  only: /^v.*/
+                branches:
+                  ignore: /.*/
+        - release:
+            requires:
+              - build
+            

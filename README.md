@@ -216,6 +216,6 @@ cd schemats
 # Install dependencies
 yarn install
 # Run the example, which will run create the schemats library and generate the db-types library
-yarn run example
+yarn run example:postgres
 ```
 

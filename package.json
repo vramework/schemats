@@ -13,8 +13,8 @@
   "scripts": {
     "build": "rm -rf dist && tsc",
     "example:create-db": "ts-node example/create-db.ts",
-    "example:generate": "ts-node ./bin/schemats postgres postgres://postgres:password@localhost/schemats -s pet_store -o example/db-types.ts -f ./db-custom-types -c -e",
-    "example": "yarn run example:create-db && yarn run example:generate"
+    "example:generate:postgres": "ts-node ./bin/schemats postgres postgres://postgres:password@localhost/schemats -s pet_store -o example/db-types.ts -f ./db-custom-types -c -e",
+    "example:postgres": "yarn run example:create-db && yarn run example:generate:postgres"
   },
   "bin": {
     "schemats": "dist/bin/schemats.js"
