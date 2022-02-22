@@ -1,3 +1,8 @@
+## [1.0.4] - 2022.02.22
+
+fix(mysql): for some versions of mysql key casing results in empty hash lookups
+feat(postgres): Adding types 'mol', 'bfp' and 'bit' 
+
 ## [1.0.3] - 2022.02.22
 
 chore: adding ci
