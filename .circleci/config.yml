@@ -24,8 +24,7 @@ jobs:
       - persist_to_workspace:
           root: .
           paths:
-            - dist
-            - example
+            - .
 
   release:
     docker: 
@@ -44,22 +43,19 @@ jobs:
 workflows:
   version: 2
   
-  develop:
+  build-and-deploy:
     jobs:
       - build:
           filters:
-               tags:
-                  ignore: /^v.*/
+            tags:
+              only: /.*/
+      - release:
+          requires:
+            - build
+          filters:
+              tags:
+                only: /^v.*/
+              branches:
+                ignore: /.*/
 
-  release:
-      jobs:
-        - build:
-            filters:
-                tags:
-                  only: /^v.*/
-                branches:
-                  ignore: /.*/
-        - release:
-            requires:
-              - build
             

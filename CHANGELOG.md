@@ -1,3 +1,7 @@
+## [1.0.3] - 2022.02.22
+
+chore: adding ci
+
 ## [1.0.2] - 2022.02.19
 
 chore: Upgrading dependencies
