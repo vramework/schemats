@@ -1,3 +1,5 @@
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
+
 DROP SCHEMA IF EXISTS "pet_store" CASCADE;
 CREATE SCHEMA "pet_store";
 

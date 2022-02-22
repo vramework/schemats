@@ -1,0 +1,45 @@
+version: 2.1
+
+jobs:
+  develop:
+    docker:
+      - image: node:lts
+      - image: circleci/postgres:12-alpine
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: schemats
+    working_directory: ~/schemats
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+      - run: yarn install
+      - save_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+          paths:
+            - ./node_modules
+      - run: yarn run tsc
+      - run: yarn run example
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+
+  deploy:
+    docker: 
+      - image: node:lts
+    working_directory: ~/schemats
+    steps:
+      - attach_workspace:
+          at: ~/schemats
+
+workflows:
+  version: 2
+  
+  main:
+    jobs:
+      - develop:
+          filters:
+            branches:
+              ignore: master
