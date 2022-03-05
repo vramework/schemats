@@ -25,7 +25,7 @@ export const postgres = async (program: Command): Promise<void> => {
             connection: 'The connection string to use, if left empty will use env variables'
         })
         .action(async (connection, rest) => {
-            const { PostgresDatabase } = require('../src/schema-postgres')
+            const { PostgresDatabase } = await import('../src/schema-postgres')
             const config = new Config(rest)
             const database = new PostgresDatabase(config, connection)
             await database.isReady()
