@@ -1,6 +1,5 @@
 import * as commander from 'commander'
 import { Config, typescriptOfSchema } from '../src/generator'
-import { PostgresDatabase } from '../src/schema-postgres'
 import { promises } from 'fs'
 import { relative } from 'path'
 
@@ -26,6 +25,7 @@ export const postgres = async (program: Command): Promise<void> => {
             connection: 'The connection string to use, if left empty will use env variables'
         })
         .action(async (connection, rest) => {
+            const { PostgresDatabase } = require('../src/schema-postgres')
             const config = new Config(rest)
             const database = new PostgresDatabase(config, connection)
             await database.isReady()

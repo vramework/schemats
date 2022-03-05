@@ -1,6 +1,5 @@
 import * as commander from 'commander'
 import { Config, typescriptOfSchema } from '../src/generator'
-import { MysqlDatabase } from '../src/schema-mysql'
 import { promises } from 'fs'
 import { relative } from 'path'
 
@@ -21,6 +20,7 @@ export const mysql = async (program: Command): Promise<void> => {
         .option('-o, --output <output>', 'where to save the generated file relative to the current working directory')
         .option('--no-header', 'don\'t generate a header')
         .action(async (connection, rest) => {
+            const { MysqlDatabase } = require('../src/schema-mysql')
             const config = new Config(rest)
             const database = new MysqlDatabase(config, connection)
             await database.isReady()
