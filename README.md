@@ -27,6 +27,8 @@ also provide the meta-data to help with libraries like [postgres-typed](https://
 yarn add -d @vramework/schemats || npm install -d @vramework/schemats
 ```
 
+Additionally, either `pg` or `mysql2` must be intalled as a peer dependency.
+
 ### Generating the type definition from schema
 
 Assuming you have the following schema (this is a bit of a random one):

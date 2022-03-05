@@ -38,6 +38,14 @@
     "mysql2": ">= 2",
     "pg": ">= 8"
   },
+  "peerDependenciesMeta": {
+    "mysql2": {
+      "optional": true
+    },
+    "pg": {
+      "optional": true
+    }
+  },
   "devDependencies": {
     "@types/node": "^17.0.18",
     "@types/pg": "^8.6.4",
