@@ -19,11 +19,13 @@ const mapTableDefinitionToType = (config: Config, tableDefinition: TableDefiniti
                 // keep set and enum defaulted to string if custom type not mapped
                 column.tsType = 'string'
                 break
+            case 'bigint':
+                column.tsType = 'bigint'
+                break
             case 'integer':
             case 'int':
             case 'smallint':
             case 'mediumint':
-            case 'bigint':
             case 'double':
             case 'decimal':
             case 'numeric':

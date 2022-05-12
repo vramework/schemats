@@ -23,9 +23,11 @@ const mapPostgresTableDefinitionToType = (config: Config, tableDefinition: Table
             case 'name':
                 column.tsType = 'string'
                 break
+            case 'int8':
+                column.tsType = 'bigint'
+            break
             case 'int2':
             case 'int4':
-            case 'int8':
             case 'float4':
             case 'float8':
             case 'numeric':
