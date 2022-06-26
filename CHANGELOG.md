@@ -1,3 +1,8 @@
+## [1.0.5] - 2022.06.26
+
+feat: infer bigint type 
+chore: upgrading dependencies
+
 ## [1.0.4] - 2022.02.22
 
 fix(mysql): for some versions of mysql key casing results in empty hash lookups
