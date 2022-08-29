@@ -1,3 +1,7 @@
+## [1.0.6] - 2022.08.29
+
+chore: upgrading dependencies
+
 ## [1.0.5] - 2022.06.26
 
 feat: infer bigint type 
