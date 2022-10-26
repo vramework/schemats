@@ -20,7 +20,11 @@ const mapTableDefinitionToType = (config: Config, tableDefinition: TableDefiniti
                 column.tsType = 'string'
                 break
             case 'bigint':
-                column.tsType = 'bigint'
+                if(config.config.bigint) {
+                    column.tsType = 'bigint'
+                } else {
+                    column.tsType = 'number'
+                }
                 break
             case 'integer':
             case 'int':
