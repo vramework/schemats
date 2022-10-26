@@ -22,6 +22,7 @@ export const postgres = async (program: Command): Promise<void> => {
         .option('-o, --output <output>', 'where to save the generated file relative to the current working directory')
         .option('--no-write-header', 'don\'t generate a header')
         .option('--no-throw-on-missing-type', 'don\'t throw an error when pg type cannot be mapped to ts type')
+        .option('--no-optional', 'don\'t make nullable field optional')
         .description('Generate a typescript schema from postgres', {
             connection: 'The connection string to use, if left empty will use env variables'
         })
