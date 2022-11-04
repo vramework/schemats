@@ -20,9 +20,10 @@ export const postgres = async (program: Command): Promise<void> => {
         .option('-C, --camelCaseTypes', 'use camel case only for TS names - not modifying the column names')
         .option('-e, --enums', 'use enums instead of types')
         .option('-o, --output <output>', 'where to save the generated file relative to the current working directory')
-        .option('--no-write-header', 'don\'t generate a header')
+        .option('--no-header', 'don\'t generate a header')
         .option('--no-throw-on-missing-type', 'don\'t throw an error when pg type cannot be mapped to ts type')
         .option('--no-bigint', 'use number instead of bigint')
+        .option('--no-optional', 'don\'t make nullable field optional')
         .description('Generate a typescript schema from postgres', {
             connection: 'The connection string to use, if left empty will use env variables'
         })

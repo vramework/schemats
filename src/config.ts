@@ -5,21 +5,23 @@ export interface ConfigValues {
     tables: string[]
     camelCase?: boolean
     camelCaseTypes?: boolean
-    writeHeader?: boolean
+    header?: boolean
     typesFile?: boolean
     throwOnMissingType?: boolean
     enums?: boolean
     bigint?: boolean
+    optional?: boolean
 }
 
 export class Config {
     constructor (public config: Partial<ConfigValues> & Pick<ConfigValues, 'schema' | 'tables'>) {
         this.config = {
-            writeHeader: true,
+            header: true,
             camelCase: false,
             throwOnMissingType: true,
             enums: false,
             bigint: true,
+            optional: true,
             ...config
         }
     }
@@ -51,7 +53,7 @@ export class Config {
     }
 
     public get writeHeader () {
-        return this.config.writeHeader
+        return this.config.header
     }
 
     public get typesFile () {

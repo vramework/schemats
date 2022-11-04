@@ -21,6 +21,7 @@ export const mysql = async (program: Command): Promise<void> => {
         .option('-o, --output <output>', 'where to save the generated file relative to the current working directory')
         .option('--no-header', 'don\'t generate a header')
         .option('--no-bigint', 'use number instead of bigint')
+        .option('--no-optional', 'don\'t make nullable field optional')
         .action(async (connection, rest) => {
             const config = new Config(rest)
             const database = new MysqlDatabase(config, connection)
