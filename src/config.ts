@@ -9,6 +9,7 @@ export interface ConfigValues {
     typesFile?: boolean
     throwOnMissingType?: boolean
     enums?: boolean
+    bigint?: boolean
     optional?: boolean
 }
 
@@ -19,6 +20,7 @@ export class Config {
             camelCase: false,
             throwOnMissingType: true,
             enums: false,
+            bigint: true,
             optional: true,
             ...config
         }
