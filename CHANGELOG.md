@@ -1,3 +1,10 @@
+## [1.0.7] - 2002.11.27
+
+feat: add --no-bigint #17 (wirekang)
+feat: add --no-optional #18 (wirekang)
+fix: --no-write-header to --no-header (wirekang)
+misc: updating packages
+
 ## [1.0.6] - 2022.08.29
 
 chore: upgrading dependencies
