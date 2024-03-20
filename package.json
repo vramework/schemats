@@ -17,9 +17,7 @@
     "example:generate:postgres": "ts-node ./bin/schemats postgres postgres://postgres:password@localhost/schemats -s pet_store -o example/db-types.ts -f ./db-custom-types -c -e",
     "example:postgres": "yarn run example:create-db && yarn run example:generate:postgres"
   },
-  "bin": {
-    "schemats": "dist/bin/schemats.js"
-  },
+  "bin": "dist/bin/schemats.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/vramework/schemats.git"
@@ -36,16 +34,16 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^18.11.9",
-    "@types/pg": "^8.6.5",
-    "@types/sinon": "^10.0.13",
-    "ts-node": "^10.9.1",
-    "typescript": "^4.9.3"
+    "@types/node": "^20.11.30",
+    "@types/pg": "^8.11.3",
+    "@types/sinon": "^17.0.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.2"
   },
   "dependencies": {
-    "camelcase": "^7.0.0",
-    "commander": "^9.4.1",
-    "mysql2": "^2.3.3",
-    "pg": "^8.8.0"
+    "camelcase": "^6",
+    "commander": "^12.0.0",
+    "mysql2": "^3.9.2",
+    "pg": "^8.11.3"
   }
 }
