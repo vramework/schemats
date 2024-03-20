@@ -1,4 +1,9 @@
-## [1.0.7] - 2002.11.27
+## [1.0.8] - 2022.03.20
+
+misc: updating packages
+ci: switching to github actions
+
+## [1.0.7] - 2022.11.27
 
 feat: add --no-bigint #17 (wirekang)
 feat: add --no-optional #18 (wirekang)
